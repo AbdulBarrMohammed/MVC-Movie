@@ -6,6 +6,20 @@ namespace MvcMovie.Controllers;
 
 public class HomeController : Controller
 {
+    //
+    // GET: /HelloWorld/
+    public string Index()
+    {
+        return "This is my default action...";
+    }
+    //
+    // GET: /HelloWorld/Welcome/
+    public string Welcome()
+    {
+        return "This is the Welcome action method...";
+    }
+    
+    /*
     private readonly ILogger<HomeController> _logger;
 
     public HomeController(ILogger<HomeController> logger)
@@ -27,5 +41,5 @@ public class HomeController : Controller
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+    } */
 }
