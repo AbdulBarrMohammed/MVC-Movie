@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 
 namespace MvcMovie.Controllers
@@ -14,6 +15,36 @@ namespace MvcMovie.Controllers
         public MoviesController(MvcMovieContext context)
         {
             _context = context;
+        }
+
+        // GET: Movies/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var movie = await _context.Movie
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            return View(movie);
+        }
+
+        // GET: Movies
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Movie.ToListAsync());
+        }
+
+        // GET: Movies/Create
+        public IActionResult Create()
+        {
+            return View();
         }
     }
 }
